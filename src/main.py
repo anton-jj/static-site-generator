@@ -1,16 +1,15 @@
-from leafnode import LeafNode
 from textnode import TextType, Textnode
-from htmlnode import HTMLNode
-print("hello world")
+from htmlnode import HTMLNode, LeafNode, ParentNode
 
-textnode = Textnode("this is a text", TextType.ITALLIC, "https://www.boot.dev")
-htmlnode = HTMLNode("p", "this is a paragraph")
-child_node = HTMLNode("span",value="click me") 
-node = HTMLNode("div", "Hello World", child_node, {"class" : "container"})
-leafnode = LeafNode("div", "value",  "http://something.com")
-    
+node = ParentNode(
+    "p",
+    [
+        LeafNode("b", "Bold text"),
+        LeafNode(None, "Normal text"),
+        LeafNode("i", "italic text"),
+        LeafNode(None, "Normal text"),
+    ],
+)
 
 
-print(textnode.__repr__())
-print(node.__repr__())
-print("this is a leaf " + leafnode.__repr__())
+print(node.to_html())
