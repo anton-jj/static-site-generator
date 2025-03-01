@@ -1,15 +1,17 @@
-from textnode import TextType, Textnode
+from textnode import TextType, TextNode
 from htmlnode import HTMLNode, LeafNode, ParentNode
-
-node = ParentNode(
-    "p",
-    [
-        LeafNode("b", "Bold text"),
-        LeafNode(None, "Normal text"),
-        LeafNode("i", "italic text"),
-        LeafNode(None, "Normal text"),
-    ],
-)
+from markdown import split_nodes_delimiter
 
 
-print(node.to_html())
+    
+
+def main():
+
+    node = TextNode("This is text with a `code block` word", TextType.TEXT)
+    new_nodes = split_nodes_delimiter([node], "`", TextType.CODE)
+
+    print(new_nodes)
+
+
+main()
+
